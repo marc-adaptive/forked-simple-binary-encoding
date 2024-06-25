@@ -76,6 +76,9 @@ ext {
     if (!project.hasProperty('ossrhPassword')) {
         ossrhPassword = ''
     }
+
+    signingKey = project.findProperty("signingKey")
+    signingPassword = project.findProperty("signingPassword")
 }
 
 def projectPom = {
@@ -334,6 +337,9 @@ project(':sbe-tool') {
     }
 
     signing {
+        if (signingKey != null) {
+            useInMemoryPgpKeys(signingKey, signingPassword)
+        }
         sign publishing.publications.sbe
     }
 }
@@ -401,6 +407,9 @@ project(':sbe-all') {
     }
 
     signing {
+        if (signingKey != null) {
+            useInMemoryPgpKeys(signingKey, signingPassword)
+        }
         sign publishing.publications.sbeAll
     }
 }
@@ -514,6 +523,9 @@ project(':sbe-samples') {
     }
 
     signing {
+        if (signingKey != null) {
+            useInMemoryPgpKeys(signingKey, signingPassword)
+        }
         sign publishing.publications.sbeSamples
     }
 }
