@@ -66,8 +66,8 @@ def sbeVersion = file('version.txt').text.trim()
 
 ext {
     isReleaseVersion = !sbeVersion.endsWith('-SNAPSHOT')
-    releasesRepoUrl = 'http://localhost:8081/artifactory/'
-    snapshotsRepoUrl = 'http://localhost:8081/artifactory/'
+    releasesRepoUrl = 'http://localhost:8081/artifactory/test-maven-repo/'
+    snapshotsRepoUrl = 'http://localhost:8081/artifactory/test-maven-repo/'
 
     if (!project.hasProperty('ossrhUsername')) {
         ossrhUsername = ''
