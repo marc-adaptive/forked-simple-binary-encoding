@@ -33,7 +33,7 @@ jobs:
   tag-release:
     permissions:
       contents: write
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -53,7 +53,7 @@ jobs:
       contents: write
       packages: write
     needs: tag-release
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -87,7 +87,7 @@ jobs:
     permissions:
       contents: write
     needs: build-java
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: checkout
         uses: actions/checkout@v4

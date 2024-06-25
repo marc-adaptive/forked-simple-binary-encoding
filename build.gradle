@@ -66,8 +66,8 @@ def sbeVersion = file('version.txt').text.trim()
 
 ext {
     isReleaseVersion = !sbeVersion.endsWith('-SNAPSHOT')
-    releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-    snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+    releasesRepoUrl = 'http://localhost:8081/artifactory/'
+    snapshotsRepoUrl = 'http://localhost:8081/artifactory/'
 
     if (!project.hasProperty('ossrhUsername')) {
         ossrhUsername = ''
@@ -77,8 +77,8 @@ ext {
         ossrhPassword = ''
     }
 
-    signingKey = project.findProperty("signingKey")
-    signingPassword = project.findProperty("signingPassword")
+//    signingKey = project.findProperty("signingKey")
+//    signingPassword = project.findProperty("signingPassword")
 }
 
 def projectPom = {
@@ -328,6 +328,7 @@ project(':sbe-tool') {
         repositories {
             maven {
                 url(!isReleaseVersion ? snapshotsRepoUrl : releasesRepoUrl)
+                allowInsecureProtocol = true
                 credentials {
                     username = ossrhUsername
                     password = ossrhPassword
@@ -398,6 +399,7 @@ project(':sbe-all') {
         repositories {
             maven {
                 url(!isReleaseVersion ? snapshotsRepoUrl : releasesRepoUrl)
+                allowInsecureProtocol = true
                 credentials {
                     username = ossrhUsername
                     password = ossrhPassword
@@ -514,6 +516,7 @@ project(':sbe-samples') {
         repositories {
             maven {
                 url(!isReleaseVersion ? snapshotsRepoUrl : releasesRepoUrl)
+                allowInsecureProtocol = true
                 credentials {
                     username = ossrhUsername
                     password = ossrhPassword
