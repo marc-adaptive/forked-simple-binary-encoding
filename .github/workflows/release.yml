@@ -31,7 +31,6 @@ env:
 jobs:
   run-release-ci:
     name: Run ci workflows
-    if: ${{ inputs.run-ci }}
     uses: ./.github/workflows/pre-release-ci.yml
     with:
       run-ci: ${{ inputs.run-ci }}
