@@ -34,7 +34,6 @@ jobs:
     uses: ./.github/workflows/pre-release-ci.yml
     with:
       run-ci: ${{ inputs.run-ci }}
-      run-ci-low-cadence: ${{ inputs.run-ci }}
       codeql: ${{ inputs.run-ci }}
 
   pre-release:

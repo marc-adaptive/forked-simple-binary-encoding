@@ -8,11 +8,6 @@ on:
         required: true
         type: boolean
 
-      run-ci-low-cadence:
-        description: 'run the ci-low-cadence workflow'
-        required: true
-        type: boolean
-
       codeql:
         description: 'run the codeql workflow'
         required: true
@@ -29,17 +24,6 @@ jobs:
     if: ${{ always() && needs.ci.result == 'skipped' }}
     steps:
       - run: echo CI Skipped
-
-  ci-low-cadence:
-    uses: ./.github/workflows/ci-low-cadence.yml
-    if: ${{ inputs.run-ci-low-cadence }}
-
-  ci-low-cadence-skipped:
-    runs-on: ubuntu-latest
-    needs: ci-low-cadence
-    if: ${{ always() && needs.ci-low-cadence.result == 'skipped' }}
-    steps:
-      - run: echo CI Low Cadence Skipped
 
   codeql:
     uses: ./.github/workflows/codeql.yml
