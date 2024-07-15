@@ -23,7 +23,7 @@ jobs:
   release:
     name: Release java artifacts
     permissions:
-      contents: read
+      contents: write
       packages: write
     #    needs: [ ci , codeql ]
     runs-on: self-hosted
