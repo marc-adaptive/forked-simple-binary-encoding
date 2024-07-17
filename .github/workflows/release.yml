@@ -19,13 +19,17 @@ jobs:
 #
 #  codeql:
 #    uses: ./.github/workflows/codeql.yml
+#
+  slow:
+    uses: ./.github/workflows/slow.yml
 
   release:
     name: Release java artifacts
     permissions:
       contents: write
       packages: write
-    #    needs: [ ci , codeql ]
+    #    needs: [ ci , codeql, slow]
+    needs: slow
     runs-on: self-hosted
     steps:
       - name: checkout
